@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water Problem Mapping</title>
+  <link rel="stylesheet" href="styleWPM2.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo">WaterMap</a>
+      <!-- <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul> -->
+    </div>
+    <div class="welcome-container">
+      <h2 class="welcome-text">Welcome, <span id="username"><%=user.username%></span>!</h2>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="profile">
+        <i class="fas fa-user-circle" id="profileIcon"></i>
+      </a>
+      <div id="dropdownMenu" class="dropdown hidden">
+        <p><strong><%= user.username %></strong></p>
+        <button id="logoutBtn">Log out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="search-container">
+      <input type="text" id="location-search" placeholder="Search location..." />
+      <button id="search-button"><i class="fas fa-search"></i></button>
+      <button id="use-my-location" title="Use my current location"><i class="fas fa-crosshairs"></i></button>
+    </div>
+    <div id="map"></div>
+  </section>
+
+  <!-- panel for detailed report display
+  <div id="report-detail-panel" class="report-detail hidden">
+    <div class="report-detail-content">
+      <img id="detail-image" src="" alt="Report Image" />
+      <h2 id="detail-title"></h2>
+      <p id="detail-description"></p>
+      <p><strong>Location:</strong> <span id="detail-location"></span></p>
+      <p><strong>Date:</strong> <span id="detail-date"></span></p>
+      <p><strong>Reported By:</strong> <span id="detail-user"></span></p>
+      <div class="likes-dislikes">
+        <button id="like-btn">👍 <span id="like-count">0</span></button>
+        <button id="dislike-btn">👎 <span id="dislike-count">0</span></button>
+      </div>
+    </div>
+  </div> -->
+  
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button id="add-report-btn" class="action-btn">
+      <i class="fas fa-plus"></i> Add a Report
+    </button>
+    <button id="view-reports-btn" class="action-btn">
+      <i class="fas fa-list"></i> View Previous Reports
+    </button>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="report-modal" class="modal" enctype="multipart/form-data">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Report a Water Problem</h2>
+      <form id="report-form">
+        <div class="form-group">
+          <label for="report-title">Title</label>
+          <input type="text" id="report-title" name="title" required />
+        </div>
+        <div class="form-group">
+          <label for="report-issue">Issue Description</label>
+          <textarea id="report-issue" name="description" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="report-image">Add Image</label>
+          <input type="file" id="report-image" name="image" accept="image/*" />
+          <div id="image-preview">Image preview will appear here</div>
+        </div>
+        <div class="form-group">
+          <label for="report-location">Location</label>
+          <input type="text" id="report-location" name="location" required />
+          <button type="button" id="use-map-location">Use Current Map Location</button>
+          <p class="coordinates" id="location-coordinates">Coordinates: Not selected</p>
+        </div>
+        <button type="submit" class="submit-btn">Submit Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reports Section -->
+  <section id="reports-section" class="reports-section hidden">
+    <h2>Your Previous Reports</h2>
+    <div id="reports-container">
+      <p id="no-reports-message">No reports by you</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    const currentUserId = "<%= user._id %>";
+</script>
+
+  <script>
+    const loggedInUserId = "<%= user._id %>";
+    const loggedInUsername = "<%= user.username %>";
+  </script>
+  <script src="scriptWPM2.js"></script>
+</body>
+</html>

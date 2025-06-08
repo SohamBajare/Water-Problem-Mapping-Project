@@ -1,0 +1,704 @@
+/* Base Styles */
+:root {
+    --primary-color: #1a73e8;
+    --secondary-color: #0d47a1;
+    --accent-color: #4fc3f7;
+    --light-blue: #e3f2fd;
+    --water-blue: #bbdefb;
+    --dark-blue: #0d47a1;
+    --text-color: #333;
+    --light-text: #f8f9fa;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(to bottom, var(--light-blue) 0%, #ffffff 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(to right, var(--dark-blue), var(--primary-color));
+    color: var(--light-text);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--light-text);
+    text-decoration: none;
+    margin-right: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #4fc3f7, #e3f2fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-right: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.welcome-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--light-text);
+    animation: float 3s ease-in-out infinite;
+}
+
+#username {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.profile {
+    color: var(--light-text);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.profile:hover {
+    transform: scale(1.1);
+}
+
+/* Map Section */
+.map-section {
+    height: 70vh;
+    position: relative;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: var(--water-blue);
+    z-index: 1;
+}
+
+.search-container {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    width: 80%;
+    max-width: 500px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+#location-search {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 25px 0 0 25px;
+}
+
+#search-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 0 25px 25px 0;
+}
+
+#search-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    position: sticky;
+    bottom: 2rem;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.action-buttons.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.action-btn {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.4s;
+    position: relative;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: var(--text-color);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(79, 195, 247, 0.3);
+    outline: none;
+}
+
+input[type="file"] {
+    margin-top: 0.5rem;
+}
+
+#image-preview {
+    margin-top: 1rem;
+    max-width: 100%;
+    height: 150px;
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    overflow: hidden;
+}
+
+#image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#use-map-location {
+    margin-top: 0.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+#use-map-location:hover {
+    background-color: #2196f3;
+}
+
+.coordinates {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(to right, #0d47a1, #0a3880);
+}
+
+/* Reports Section */
+.reports-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    transition: all 0.5s ease;
+}
+
+.reports-section.hidden {
+    display: none;
+}
+
+.reports-section h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.reports-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    border-radius: 3px;
+}
+
+#reports-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+#no-reports-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.report-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.report-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.report-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: var(--light-blue);
+}
+
+.report-content {
+    padding: 1.5rem;
+}
+
+.report-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.report-date {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.report-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.report-location {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.report-location i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .nav-left, .nav-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+    
+    .welcome-container {
+        position: relative;
+        transform: none;
+        left: 0;
+        margin: 0.5rem 0;
+    }
+    
+    .nav-links {
+        margin-right: 0;
+    }
+    
+    .nav-links li {
+        margin-right: 0.8rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #reports-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Water ripple effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(79, 195, 247, 0.3);
+    animation: ripple 1.5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+/* profile icon styling */
+.dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 220px;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .dropdown p {
+    margin: 0;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+  
+  .dropdown p:hover {
+    color: #007BFF;
+  }
+  
+  .dropdown button {
+    margin-top: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  .dropdown button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+  }
+  
+  .dropdown button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 123, 255, 0.3);
+  }
+  
+  .hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  /* Adding a subtle animation when dropdown appears */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .dropdown:not(.hidden) {
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  /* Optional: Add a nice divider between items */
+  .dropdown p:not(:last-of-type) {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  #report-detail-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 400px;
+    background: #fff;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.2);
+    display: flex;
+    z-index: 1000;
+    padding: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.report-image-section img {
+    max-height: 300px;
+    max-width: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.report-info-section {
+    flex: 1;
+}
+
+.like-dislike-container button {
+    font-size: 18px;
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+ /* Reuse general report-panel styling or define this if you want it separately */
+#evidence-detail-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    max-width: 90%;
+    background: #f0faff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    padding: 20px 25px;
+    z-index: 10010;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #103458;
+  }
+  
+  #evidence-detail-panel h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  #evidence-detail-panel p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+  
+  #evidence-detail-panel img {
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 10px auto;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Close button style */
+  #evidence-detail-panel .close-panel {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  
+  #evidence-detail-panel .close-panel:hover {
+    color: #ff3b3b;
+  }
+   

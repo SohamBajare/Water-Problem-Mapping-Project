@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Problem Mapping | Admin Dashboard</title>
+    <link rel="stylesheet" href="authHome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-water"></i>
+                <h2>AquaAlert</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="admin-avatar">
+                        <img src="/api/placeholder/40/40" alt="Admin Avatar">
+                    </div>
+                    <div class="admin-info">
+                        <h4>Admin User</h4>
+                        <p>Administrator</p>
+                    </div>
+                </div>
+                <a href="#" class="logout-btn" id="logOutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="dashboard-title">
+                <h1>Water Problem Reports Dashboard</h1>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Total Reports</h3>
+                        <p class="stat-number" id="totalReports">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Pending</h3>
+                        <p class="stat-number" id="pendingReports">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Resolved</h3>
+                        <p class="stat-number" id="resolvedReports">0</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Map Section -->
+            
+            
+            <div class="dashboard-content">
+                
+                <div>
+                    <section class="map-section" style="height: 500px; width: 600px;">
+                        <div class="search-container">
+                        <input type="text" id="location-search" placeholder="Search location..." />
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                        <button id="use-my-location" title="Use my current location"><i class="fas fa-crosshairs"></i></button>
+                        </div>
+                        <div id="map"></div>
+                    </section>
+                </div>
+
+                <!-- Reports List Section -->
+                <section class="reports-section">
+                    <div class="section-header">
+                        <h2>Recent Reports</h2>
+                        <div class="section-actions">
+                            <select class="status-filter">
+                                <option>All Status</option>
+                                <option>Pending</option>
+                                <option>Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="reports-list" id="reports-list">
+                        <!-- Reports will be inserted here by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Report Detail Modal -->
+    <div class="modal" id="report-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Report Details</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Report details will be inserted here by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="close-report-btn">Close</button>
+                <button class="btn btn-primary" id="mark-solved-btn">Mark as Solved</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API Script (Replace YOUR_API_KEY with actual key) -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlxbCHd41L5B22iwXQcRjUDJMHrn3LNUY&libraries=places&callback=initGoogleMaps">
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="authHome2.js"></script>
+</body>
+</html>

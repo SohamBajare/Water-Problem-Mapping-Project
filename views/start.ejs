@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Problem Mapping - Auth</title>
+  <link rel="stylesheet" href="startStyle.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Crowd-Sourced Water Problem Mapping</h1>
+
+    <div class="button-group">
+      <button id="show-login">Login</button>
+      <button id="show-authLogin">Login as Authority</button>
+      <button id="show-signup">Sign Up</button>
+    </div>
+
+    <div class="form-container">
+      <form id="login-form" class="form hidden" method="POST" action="/userHome">
+        <h2>Login</h2>
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="authLogin-form" class="form hidden" method="POST" action="/authHome">
+        <h2>Login as Authority</h2>
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="passKey" name="passKey" placeholder="PassKey" required />
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="signup-form" class="form hidden" method="POST" action="/start">
+        <h2>Sign Up</h2>
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Set Password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="startLogic.js"></script>
+</body>
+</html>
